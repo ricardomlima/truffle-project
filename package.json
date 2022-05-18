@@ -13,6 +13,7 @@
     "node": ">=17.7.1"
   },
   "devDependencies": {
+    "@openzeppelin/contracts": "^4.6.0",
     "truffle": "^5.5.11"
   }
 }
