@@ -36,4 +36,11 @@ contract('Box', function ([owner, other]) {
     expectEvent(receipt, 'ValueChanged', { value: value });
   });
 
+  it('non owner cannot store a value', async function () {
+    await expectRevert(
+      this.box.store(value, { from: other }),
+      'Ownable: caller is not the owner',
+    );
+  });
+
 });
