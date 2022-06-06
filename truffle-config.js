@@ -18,7 +18,8 @@
  *
  */
 
-// const HDWalletProvider = require('@truffle/hdwallet-provider');
+const { alchemyApiKey, mnemonic, private_key } = require('./secrets.json');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
@@ -45,6 +46,16 @@ module.exports = {
      host: "127.0.0.1",     // Localhost (default: none)
      port: 8545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
+    },
+    goerli: {
+      provider: () => new HDWalletProvider(
+        // this mnemonic will generate a list of private/public keys
+        // the first key will be used to sign transactions (like deploying the smart contract)
+        mnemonic,
+        `https://eth-goerli.alchemyapi.io/v2/${alchemyApiKey}`,
+      ),
+      network_id: 5,
+      skipDryRun: true,
     },
     // Another network with more advanced options...
     // advanced: {
